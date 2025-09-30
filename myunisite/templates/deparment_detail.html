@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>deparment</title>
+    {% load static %}
+     <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+<header>
+        <nav>
+            <ul style="list-style: none; display: flex; gap: 15px;">
+                <li><a href="/">Головна</a></li>
+                <li><a href="/departments/">Кафедри</a></li>
+                <li><a href="/programs/">Спеціальності</a></li>
+            </ul>
+        </nav>
+    </header>
+<h1>{{ department.name }}</h1>
+<p><b>Завідувач:</b> {{ department.department_head }}</p>
+<h2>Спеціальності:</h2>
+<ul>
+  {% for prog in department.programs.all %}
+    <li>{{ prog.name }} ({{ prog.code }})</li>
+  {% endfor %}
+</ul>
+
+<h2>Викладачі:</h2>
+<ul>
+  {% for t in department.teachers.all %}
+    <li>{{ t.name }} — {{ t.position }}, {{ t.degree }}</li>
+  {% endfor %}
+</ul>

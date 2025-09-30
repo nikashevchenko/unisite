@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>programs</title>
+    {% load static %}
+     <link rel="stylesheet" href="{% static 'base.css' %}">
 </head>
 <body>
+<header>
+        <nav>
+            <ul style="list-style: none; display: flex; gap: 15px;">
+                <li><a href="/">Головна</a></li>
+                <li><a href="/departments/">Кафедри</a></li>
+                <li><a href="/programs/">Спеціальності</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<h1>Список спеціальностей</h1>
+<ul>
+  {% for program in programs %}
+    <li>
+      <a href="{% url 'program_detail' program.id %}">{{ program.name }}</a> ({{ program.code }})<br>
+      {{ program.short_description }}...<br>
+      Координатор: {{ program.coordinator_name }} ({{ program.coordinator_contact }})
+    </li>
+  {% endfor %}
+</ul>
 
 </body>
 </html>
